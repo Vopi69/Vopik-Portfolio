@@ -1,6 +1,9 @@
+
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,65 +12,162 @@
 <style>
 
 body {
+
     margin:0;
     font-family:Arial, sans-serif;
     background:#000;
     color:white;
+    overflow-x:hidden;
+
 }
+
+
+/* EMOJI POZADÍ */
+
+body::before {
+
+    content:"🎮  ⚡  💻  🧱  ⚙️  🌐  🎮  💻";
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    font-size:60px;
+
+    opacity:0.04;
+
+    word-spacing:80px;
+
+    line-height:150px;
+
+    pointer-events:none;
+
+}
+
+
+
 
 
 /* HEADER */
 
 header {
+
     text-align:center;
-    padding:50px 20px 20px;
+    padding:40px 20px 20px;
+
 }
 
+
 header h1 {
+
     font-size:60px;
     margin:0;
+
 }
+
+
+
+
+
+/* PROFIL */
+
+.profile {
+
+    width:140px;
+    height:140px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid white;
+
+    margin-top:20px;
+
+    transition:.3s;
+
+}
+
+
+.profile:hover {
+
+    transform:scale(1.1);
+
+}
+
+
+
 
 
 /* MENU */
 
+
 nav {
+
     display:flex;
+
     justify-content:center;
+
     gap:15px;
+
     margin-top:25px;
+
 }
 
 
+
 button {
+
     background:#111;
+
     color:white;
+
     border:1px solid #333;
+
     padding:12px 20px;
+
     border-radius:12px;
+
     cursor:pointer;
+
     transition:.3s;
+
 }
 
 
 button:hover {
+
     transform:scale(1.05);
+
 }
 
 
 button.active {
+
     background:white;
+
     color:black;
+
 }
+
+
+
 
 
 
 /* SEKCE */
 
+
 .section {
 
     display:none;
+
     width:80%;
+
     margin:auto;
 
 }
@@ -81,14 +181,24 @@ button.active {
 
 
 
+
+
+
 /* KARTY */
 
-.card {
+
+.card,
+.server-card {
+
 
     background:#0d0d0d;
+
     border:1px solid #222;
+
     padding:25px;
+
     margin:25px 0;
+
     border-radius:18px;
 
     transition:.3s;
@@ -96,48 +206,55 @@ button.active {
 }
 
 
-.card:hover {
+
+.card:hover,
+.server-card:hover {
 
     transform:scale(1.02);
 
-}
-
-
-
-/* HLAVA */
-
-.head {
-
-    width:140px;
-    display:block;
-    margin:auto;
+    border-color:white;
 
 }
 
 
 
-/* TEXT */
+
+
+
+/* O MNĚ */
+
 
 .about-text {
 
     text-align:center;
+
     line-height:1.7;
-    opacity:.8;
+
+    opacity:.85;
 
 }
+
+
+
+
 
 
 
 /* SPOLUPRACOVNICI */
 
+
 .players {
 
     display:flex;
+
     justify-content:center;
+
     gap:30px;
+
     flex-wrap:wrap;
 
 }
+
 
 
 .player {
@@ -150,8 +267,11 @@ button.active {
 .player img {
 
     width:60px;
+
     border-radius:8px;
+
     border:1px solid #333;
+
     transition:.3s;
 
 }
@@ -159,51 +279,29 @@ button.active {
 
 .player img:hover {
 
-    transform:scale(1.15);
-
-}
-
-
-.player p {
-
-    font-size:13px;
-}
-
-
-
-/* SERVERY */
-
-
-.server-card {
-
-
-    background:#0d0d0d;
-    border:1px solid #222;
-
-    padding:25px;
-    margin:25px 0;
-
-    border-radius:18px;
-
-    transition:.3s;
+    transform:scale(1.2);
 
 }
 
 
 
-.server-card:hover {
 
-    transform:scale(1.02);
-    border-color:white;
+
+
+
+/* SERVER KARTY */
+
+
+.server-icon {
+
+    font-size:45px;
 
 }
-
 
 
 .server-card h1 {
 
-    font-size:38px;
-    margin-top:0;
+    font-size:40px;
 
 }
 
@@ -212,18 +310,21 @@ button.active {
 .server-card ul {
 
     line-height:2;
+
     opacity:.8;
 
 }
 
 
 
-/* FOOTER */
+
 
 footer {
 
     text-align:center;
+
     opacity:.5;
+
     padding:40px;
 
 }
@@ -231,31 +332,40 @@ footer {
 
 </style>
 
+
 </head>
 
 
 <body>
 
 
+
+
 <header>
+
 
 <h1>Vopik_</h1>
 
 
+<img class="profile" src="icons/Vopik_.png">
+
+
+
 <nav>
 
+
 <button class="tab active" onclick="show('about',this)">
-O mně
+👤 O mně
 </button>
 
 
 <button class="tab" onclick="show('servers',this)">
-Servery
+🌐 Servery
 </button>
 
 
 <button class="tab" onclick="show('contact',this)">
-Kontakty
+📩 Kontakty
 </button>
 
 
@@ -268,7 +378,12 @@ Kontakty
 
 
 
+
+
+
+
 <!-- O MNĚ -->
+
 
 <div id="about" class="section active">
 
@@ -276,11 +391,8 @@ Kontakty
 <div class="card">
 
 
-<h2> O mně</h2>
+<h2>👤 O mně</h2>
 
-
-<img class="head"
-src="https://mc-heads.net/avatar/Vopik_">
 
 
 <div class="about-text">
@@ -289,23 +401,30 @@ src="https://mc-heads.net/avatar/Vopik_">
 Jsem Minecraft Developer a Discord Admin.<br><br>
 
 
-Věnuji se tvorbě a správě Minecraft serverů,
-nastavení pluginů a vytváření a moderací komunit.<br><br>
+Zabývám se tvorbou a správou Minecraft serverů,
+nastavením pluginů a vytvářením komunit.<br><br>
 
 
-Moje služby
+Moje zaměření:
 
-<br>• Minecraft servery
-<br>• Pluginy a konfigurace
-<br>• Discord správa
-<br>• Admin práce
-<br>• Vývoj pluginů a skriptů
+<br>🧱 Minecraft servery
+
+<br>⚙️ Pluginy a konfigurace
+
+<br>🤖 Discord boti
+
+<br>🛡️ Administrace
+
+<br>💻 Vývoj systémů
 
 
 </div>
 
 
+
 </div>
+
+
 
 
 
@@ -314,7 +433,7 @@ Moje služby
 <div class="card">
 
 
-<h2> Spolupracovníci</h2>
+<h2>🤝 Spolupracovníci</h2>
 
 
 <div class="players">
@@ -345,7 +464,9 @@ Moje služby
 </div>
 
 
+
 </div>
+
 
 
 
@@ -360,7 +481,13 @@ Moje služby
 <div id="servers" class="section">
 
 
+
 <div class="server-card">
+
+
+<div class="server-icon">
+🧱
+</div>
 
 
 <h1>PivoSNP</h1>
@@ -368,13 +495,13 @@ Moje služby
 
 <ul>
 
-<li>Survival systém</li>
+<li>Survival server</li>
 
-<li>Vlastní custom pluginy</li>
+<li>Custom pluginy</li>
 
 <li>Verze 1.21+</li>
 
-<li>Currently shuted down</li>
+<li>Momentálně vypnutý</li>
 
 
 </ul>
@@ -386,21 +513,28 @@ Moje služby
 
 
 
+
+
 <div class="server-card">
 
 
-<h1>Discord servers</h1>
+<div class="server-icon">
+💬
+</div>
+
+
+<h1>Discord Servers</h1>
 
 
 <ul>
 
-<li>TenSHouslema | Discord</li>
+<li>Správa Discord komunit</li>
 
-<li>Rpgs discord servers</li>
+<li>Custom Discord boti</li>
 
-<li>Custom Discord bots</li>
+<li>Anti raid systémy</li>
 
-<li>Profesional anti raid/bot systems</li>
+<li>Nastavení serverů</li>
 
 
 </ul>
@@ -426,10 +560,11 @@ Moje služby
 <div id="contact" class="section">
 
 
+
 <div class="card">
 
 
-<h2> Kontakt</h2>
+<h2>📩 Kontakt</h2>
 
 
 <p>
@@ -447,7 +582,11 @@ Email:
 </div>
 
 
+
 </div>
+
+
+
 
 
 
@@ -459,6 +598,7 @@ Email:
 © 2026 Vopik_
 
 </footer>
+
 
 
 
@@ -477,7 +617,6 @@ document.querySelectorAll(".section")
 section.classList.remove("active");
 
 });
-
 
 
 document.getElementById(id)
@@ -504,4 +643,5 @@ button.classList.add("active");
 
 
 </body>
+
 </html>
