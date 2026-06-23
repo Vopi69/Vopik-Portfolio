@@ -6,64 +6,33 @@
 <title>Vopik_ Portfolio</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
-
 body {
     margin: 0;
-    font-family: Inter, sans-serif;
-    background: #000;
+    font-family: Arial, sans-serif;
+    background: black;
     color: white;
-}
-
-/* hvězdy */
-body::before {
-    content: "";
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(white 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.05;
-    animation: move 60s linear infinite;
-}
-
-@keyframes move {
-    from {transform: translate(0,0);}
-    to {transform: translate(-200px,-200px);}
-}
-
-/* HEADER */
-header {
-    text-align: center;
-    padding: 50px 20px 10px;
-}
-
-h1 {
-    font-size: 55px;
-    margin: 0;
 }
 
 /* NAV */
 nav {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     margin-top: 20px;
 }
 
 button {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.2);
     color: white;
     padding: 10px 15px;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-button:hover {
-    transform: scale(1.05);
-    border-color: white;
+button.active {
+    background: white;
+    color: black;
 }
 
 /* SECTIONS */
@@ -89,46 +58,56 @@ button:hover {
 
 /* HEAD */
 .head {
+    width: 140px;
     display: block;
     margin: auto;
-    width: 120px;
 }
 
-/* PLAYERS */
-.players {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-.player {
+/* ABOUT TEXT */
+.about-text {
     text-align: center;
+    opacity: 0.8;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* SMALL COLLAB HEADS */
+.players {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 20px;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .player img {
-    width: 80px;
-    border-radius: 10px;
+    width: 60px;
+    border-radius: 8px;
     border: 1px solid rgba(255,255,255,0.2);
+    transition: 0.3s;
 }
 
-/* footer */
-footer {
-    text-align: center;
-    opacity: 0.4;
-    padding: 30px;
+.player img:hover {
+    transform: scale(1.1);
+}
+
+.player p {
+    font-size: 12px;
+    opacity: 0.7;
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<header style="text-align:center;padding:40px;">
     <h1>Vopik_</h1>
 
     <nav>
-        <button onclick="show('about')">O mně</button>
-        <button onclick="show('servers')">Servery</button>
-        <button onclick="show('contact')">Kontakt</button>
+        <button class="tab active" onclick="show('about', this)">O mně</button>
+        <button class="tab" onclick="show('servers', this)">Servery</button>
+        <button class="tab" onclick="show('contact', this)">Kontakt</button>
     </nav>
 </header>
 
@@ -138,15 +117,25 @@ footer {
     <div class="card">
         <h2>👤 O mně</h2>
         <img class="head" src="https://mc-heads.net/avatar/Vopik_" />
-        <p style="text-align:center;opacity:0.7">
-            Minecraft Developer • Discord Admin
-        </p>
+
+        <div class="about-text">
+            Jsem Minecraft developer a Discord admin.<br><br>
+
+            Zabývám se tvorbou serverů, pluginů, konfigurací a správou komunit.<br>
+            Mám zkušenosti s Minecraft survival i minigame servery.<br><br>
+
+            Specializuji se na:
+            <br>• Minecraft servery
+            <br>• Discord boty a správu serverů
+            <br>• Community management
+        </div>
     </div>
 
     <div class="card">
         <h2>🤝 Spolupracovníci</h2>
 
         <div class="players">
+
             <div class="player">
                 <img src="https://mc-heads.net/avatar/matty_ytb">
                 <p>matty_ytb</p>
@@ -156,6 +145,15 @@ footer {
                 <img src="https://mc-heads.net/avatar/idlk_xddd">
                 <p>idlk_xddd</p>
             </div>
+
+            <!-- MŮŽEŠ PŘIDAT DALŠÍ -->
+            <!--
+            <div class="player">
+                <img src="https://mc-heads.net/avatar/jmeno">
+                <p>jmeno</p>
+            </div>
+            -->
+
         </div>
 
     </div>
@@ -167,8 +165,7 @@ footer {
 
     <div class="card">
         <h2>🌐 Servery</h2>
-        <p>Sem můžeš později přidat svoje Minecraft servery.</p>
-        <p style="opacity:0.6">Např. IP, status, verze, pluginy...</p>
+        <p>Zatím sem můžeš přidat svoje Minecraft servery.</p>
     </div>
 
 </div>
@@ -184,14 +181,13 @@ footer {
 
 </div>
 
-<footer>
-    © 2026 Vopik_
-</footer>
-
 <script>
-function show(id){
+function show(id, btn){
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
+
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 }
 </script>
 
