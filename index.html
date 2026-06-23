@@ -13,7 +13,6 @@ body {
     font-family: Inter, sans-serif;
     background: #000;
     color: white;
-    overflow-x: hidden;
 }
 
 /* hvězdy */
@@ -33,59 +32,66 @@ body::before {
     to {transform: translate(-200px,-200px);}
 }
 
+/* HEADER */
 header {
     text-align: center;
-    padding: 80px 20px 40px;
+    padding: 50px 20px 10px;
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 55px;
     margin: 0;
 }
 
-.subtitle {
-    opacity: 0.7;
-    margin-top: 10px;
+/* NAV */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
 }
 
-.container {
-    width: 85%;
-    margin: auto;
-}
-
-/* card */
-.card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 16px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: 0.4s;
-}
-
-.card.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.card:hover {
-    transform: scale(1.02);
-    border-color: rgba(255,255,255,0.25);
-}
-
-/* SKIN */
-.skin {
-    display: block;
-    margin: auto;
-    width: 220px;
+button {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
     transition: 0.3s;
 }
 
-.skin:hover {
+button:hover {
     transform: scale(1.05);
+    border-color: white;
+}
+
+/* SECTIONS */
+.section {
+    display: none;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.section.active {
+    display: block;
+}
+
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 15px;
+}
+
+/* HEAD */
+.head {
+    display: block;
+    margin: auto;
+    width: 120px;
 }
 
 /* PLAYERS */
@@ -93,7 +99,6 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 30px;
-    flex-wrap: wrap;
 }
 
 .player {
@@ -101,14 +106,9 @@ h1 {
 }
 
 .player img {
-    width: 90px;
-    border-radius: 12px;
+    width: 80px;
+    border-radius: 10px;
     border: 1px solid rgba(255,255,255,0.2);
-    transition: 0.3s;
-}
-
-.player img:hover {
-    transform: translateY(-5px) scale(1.05);
 }
 
 /* footer */
@@ -124,26 +124,29 @@ footer {
 
 <header>
     <h1>Vopik_</h1>
-    <div class="subtitle">Minecraft Developer • Discord Admin</div>
+
+    <nav>
+        <button onclick="show('about')">O mně</button>
+        <button onclick="show('servers')">Servery</button>
+        <button onclick="show('contact')">Kontakt</button>
+    </nav>
 </header>
 
-<div class="container">
+<!-- ABOUT -->
+<div id="about" class="section active">
 
     <div class="card">
         <h2>👤 O mně</h2>
-        <p>
-            Jsem Minecraft developer a admin. Vytvářím servery, pluginy a spravuju Discord komunity.
+        <img class="head" src="https://mc-heads.net/avatar/Vopik_" />
+        <p style="text-align:center;opacity:0.7">
+            Minecraft Developer • Discord Admin
         </p>
     </div>
 
     <div class="card">
-        <h2>Vopik_</h2>
-        <img class="skin" src="https://crafatar.com/renders/body/Vopik_" />
+        <h2>🤝 Spolupracovníci</h2>
 
-    <div class="card">
-        <h2>👥 Spolupracovníci</h2>
         <div class="players">
-
             <div class="player">
                 <img src="https://mc-heads.net/avatar/matty_ytb">
                 <p>matty_ytb</p>
@@ -153,35 +156,43 @@ footer {
                 <img src="https://mc-heads.net/avatar/idlk_xddd">
                 <p>idlk_xddd</p>
             </div>
-
         </div>
+
     </div>
+
+</div>
+
+<!-- SERVERS -->
+<div id="servers" class="section">
+
+    <div class="card">
+        <h2>🌐 Servery</h2>
+        <p>Sem můžeš později přidat svoje Minecraft servery.</p>
+        <p style="opacity:0.6">Např. IP, status, verze, pluginy...</p>
+    </div>
+
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section">
 
     <div class="card">
         <h2>📩 Kontakt</h2>
-        <p>Discord: <b>vopik321</b></p>
-        <p>Email: <b>vopikuvmc@seznam.cz</b></p>
+        <p>Discord: <b>vopik_</b></p>
+        <p>Email: <b>vopik@email.com</b></p>
     </div>
 
 </div>
 
 <footer>
-    © 2026 Vopik_ • Portfolio
+    © 2026 Vopik_
 </footer>
 
 <script>
-// scroll animace
-const cards = document.querySelectorAll('.card');
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add('show');
-        }
-    });
-}, { threshold: 0.1 });
-
-cards.forEach(card => observer.observe(card));
+function show(id){
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
 </script>
 
 </body>
