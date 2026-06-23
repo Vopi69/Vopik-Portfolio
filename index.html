@@ -16,7 +16,7 @@ body {
     overflow-x: hidden;
 }
 
-/* jemné hvězdy */
+/* hvězdy */
 body::before {
     content: "";
     position: fixed;
@@ -41,7 +41,6 @@ header {
 h1 {
     font-size: 50px;
     margin: 0;
-    letter-spacing: 2px;
 }
 
 .subtitle {
@@ -54,7 +53,7 @@ h1 {
     margin: auto;
 }
 
-/* CARD STYLE */
+/* card */
 .card {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
@@ -62,9 +61,9 @@ h1 {
     padding: 20px;
     margin: 20px 0;
     border-radius: 16px;
-    transition: 0.3s;
     opacity: 0;
     transform: translateY(20px);
+    transition: 0.4s;
 }
 
 .card.show {
@@ -74,7 +73,7 @@ h1 {
 
 .card:hover {
     transform: scale(1.02);
-    border-color: rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.25);
 }
 
 /* SKIN */
@@ -86,7 +85,7 @@ h1 {
 }
 
 .skin:hover {
-    transform: rotate(2deg) scale(1.05);
+    transform: scale(1.05);
 }
 
 /* PLAYERS */
@@ -99,36 +98,24 @@ h1 {
 
 .player {
     text-align: center;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.player:hover {
-    transform: translateY(-5px);
 }
 
 .player img {
     width: 90px;
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.2);
+    transition: 0.3s;
 }
 
-/* CONTACT */
-.contact {
-    cursor: pointer;
-    color: #aaa;
+.player img:hover {
+    transform: translateY(-5px) scale(1.05);
 }
 
-.contact:hover {
-    color: white;
-}
-
-/* FOOTER */
+/* footer */
 footer {
     text-align: center;
     opacity: 0.4;
     padding: 30px;
-    font-size: 14px;
 }
 </style>
 </head>
@@ -137,18 +124,21 @@ footer {
 
 <header>
     <h1>Vopik_</h1>
-    <div class="subtitle">Minecraft Developer • Discord Admin • Server Builder</div>
+    <div class="subtitle">Minecraft Developer • Discord Admin</div>
 </header>
 
 <div class="container">
 
     <div class="card">
         <h2>👤 O mně</h2>
-        <p>Jsem Minecraft developer a admin. Vytvářím servery, spravuju Discordy a pracuju s pluginy.</p>
+        <p>
+            Jsem Minecraft developer a admin. Vytvářím servery, pluginy a spravuju Discord komunity.
+        </p>
     </div>
 
     <div class="card">
         <h2>🎮 Minecraft skin</h2>
+        <!-- SPRÁVNÝ SKIN -->
         <img class="skin" src="https://mc-heads.net/body/Vopik_" />
     </div>
 
@@ -156,12 +146,12 @@ footer {
         <h2>👥 Hráči</h2>
         <div class="players">
 
-            <div class="player" onclick="copyName('matty_ytb')">
+            <div class="player">
                 <img src="https://mc-heads.net/avatar/matty_ytb">
                 <p>matty_ytb</p>
             </div>
 
-            <div class="player" onclick="copyName('idlk_xddd')">
+            <div class="player">
                 <img src="https://mc-heads.net/avatar/idlk_xddd">
                 <p>idlk_xddd</p>
             </div>
@@ -171,8 +161,8 @@ footer {
 
     <div class="card">
         <h2>📩 Kontakt</h2>
-        <p class="contact" onclick="copyText('Discord: vopik_')">Discord: vopik_ (klikni pro kopírování)</p>
-        <p class="contact" onclick="copyText('vopik@email.com')">Email: vopik@email.com (klikni)</p>
+        <p>Discord: <b>vopik321</b></p>
+        <p>Email: <b>vopikuvmc@seznam.cz</b></p>
     </div>
 
 </div>
@@ -182,7 +172,7 @@ footer {
 </footer>
 
 <script>
-// scroll reveal
+// scroll animace
 const cards = document.querySelectorAll('.card');
 
 const observer = new IntersectionObserver(entries => {
@@ -194,17 +184,6 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 
 cards.forEach(card => observer.observe(card));
-
-// copy functions
-function copyText(text){
-    navigator.clipboard.writeText(text);
-    alert("Zkopírováno: " + text);
-}
-
-function copyName(name){
-    navigator.clipboard.writeText(name);
-    alert("Minecraft nick zkopírován: " + name);
-}
 </script>
 
 </body>
