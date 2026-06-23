@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vopik_ Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+body {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    background: #000;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* jemné hvězdy */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(white 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.05;
+    animation: move 60s linear infinite;
+}
+
+@keyframes move {
+    from {transform: translate(0,0);}
+    to {transform: translate(-200px,-200px);}
+}
+
+header {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+h1 {
+    font-size: 50px;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+.container {
+    width: 85%;
+    margin: auto;
+}
+
+/* CARD STYLE */
+.card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 16px;
+    transition: 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: scale(1.02);
+    border-color: rgba(255,255,255,0.3);
+}
+
+/* SKIN */
+.skin {
+    display: block;
+    margin: auto;
+    width: 220px;
+    transition: 0.3s;
+}
+
+.skin:hover {
+    transform: rotate(2deg) scale(1.05);
+}
+
+/* PLAYERS */
+.players {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.player {
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.player:hover {
+    transform: translateY(-5px);
+}
+
+.player img {
+    width: 90px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* CONTACT */
+.contact {
+    cursor: pointer;
+    color: #aaa;
+}
+
+.contact:hover {
+    color: white;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    opacity: 0.4;
+    padding: 30px;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Vopik_</h1>
+    <div class="subtitle">Minecraft Developer • Discord Admin • Server Builder</div>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>👤 O mně</h2>
+        <p>Jsem Minecraft developer a admin. Vytvářím servery, spravuju Discordy a pracuju s pluginy.</p>
+    </div>
+
+    <div class="card">
+        <h2>🎮 Minecraft skin</h2>
+        <img class="skin" src="https://mc-heads.net/body/Vopik_" />
+    </div>
+
+    <div class="card">
+        <h2>👥 Hráči</h2>
+        <div class="players">
+
+            <div class="player" onclick="copyName('matty_ytb')">
+                <img src="https://mc-heads.net/avatar/matty_ytb">
+                <p>matty_ytb</p>
+            </div>
+
+            <div class="player" onclick="copyName('idlk_xddd')">
+                <img src="https://mc-heads.net/avatar/idlk_xddd">
+                <p>idlk_xddd</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📩 Kontakt</h2>
+        <p class="contact" onclick="copyText('Discord: vopik_')">Discord: vopik_ (klikni pro kopírování)</p>
+        <p class="contact" onclick="copyText('vopik@email.com')">Email: vopik@email.com (klikni)</p>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Vopik_ • Portfolio
+</footer>
+
+<script>
+// scroll reveal
+const cards = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.1 });
+
+cards.forEach(card => observer.observe(card));
+
+// copy functions
+function copyText(text){
+    navigator.clipboard.writeText(text);
+    alert("Zkopírováno: " + text);
+}
+
+function copyName(name){
+    navigator.clipboard.writeText(name);
+    alert("Minecraft nick zkopírován: " + name);
+}
+</script>
+
+</body>
+</html>
